@@ -225,7 +225,10 @@ class MailMessage:
             if part.get_content_maintype() == 'multipart':
                 # multipart/* are just containers
                 continue
-            if part.get('Content-Disposition') is None and part.get('Content-ID') is None:
+            if part.get('Content-Disposition') is None and part.get('Content-ID') is None and part.get('Content-Transfer-Encoding') is None:
+                continue
+            attachment = Attachment(part)
+            if not attachment.filename:
                 continue
             results.append(Attachment(part))
         return results
