@@ -230,7 +230,7 @@ class MailMessage:
             attachment = Attachment(part)
             if not attachment.filename:
                 continue
-            results.append(Attachment(part))
+            results.append(attachment)
         return results
 
 
